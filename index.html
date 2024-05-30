@@ -3,13 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
   </head>
   <body>
-    <div>
-      <form>
-        <input type="text" placeholder="Search for cities" />
-      </form>
+    <div class="main-container">
+      <div class="lfh-container">
+        <form method="post">
+          <input type="text" placeholder="Search for cities" />
+        </form>
+        <div class="temperature-container">
+          <div>
+            <h1>Kathmandu</h1>
+            <p>Chance of rain: 0%</p>
+            <h1>26 degrees</h1>
+          </div>
+          <div class="image-container">
+            <img src="wjarere" />
+          </div>
+        </div>
+        <div class="info-container">
+          <p>Temperature: 25</p>
+          <p>Wind: 2M/S</p>
+        </div>
+      </div>
+
+      <div class="rhs-container">
+        <h3>7 days forecast</h3>
+        <ul>
+          <li>
+            <div class="individual-forecast">
+              <p>Today</p>
+              <img src="sunny-day-emoji" />
+              <p>25</p>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </body>
 </html>
