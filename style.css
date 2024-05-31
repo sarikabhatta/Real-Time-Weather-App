@@ -1,3 +1,116 @@
-body{
-    font-family: Helvetica;
+/* Basic reset and general styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1e1e1e; /* Dark background */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.main-container {
+    display: flex;
+    width: 90%;
+    max-width: 1000px;
+    background: #333; /* Matching dark shade */
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+/* Left side container */
+.lfh-container {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-container {
+    width: 100%;
+}
+
+.form-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.temperature-container h1, .temperature-container p {
+    text-align: center;
+    margin: 5px 0;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.image-container img {
+    width: 80px; /* Adjust size based on actual image size */
+}
+
+.info-container {
+    background: #2c2c2c; /* Slightly lighter gray for differentiation */
+    padding: 15px;
+    width: calc(100% + 40px);
+    margin-left: -20px;
+    box-sizing: content-box;
+}
+
+.info-container p {
+    margin-bottom: 10px; /* Space between lines */
+    text-align: center;
+}
+
+/* Right side container */
+.rhs-container {
+    width: 300px; /* Fixed width for the forecast */
+    background: #2c2c2c; /* Consistent with info container */
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.rhs-container h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.individual-forecast {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.individual-forecast p {
+    margin: 0;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+
+    .rhs-container {
+        width: 100%;
+    }
 }
