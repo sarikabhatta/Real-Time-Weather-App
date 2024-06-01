@@ -104,13 +104,4 @@ ul {
     margin: 0;
 }
 
-/* Media Queries for responsiveness */
-@media (max-width: 768px) {
-    .main-container {
-        flex-direction: column;
-    }
 
-    .rhs-container {
-        width: 100%;
-    }
-}
