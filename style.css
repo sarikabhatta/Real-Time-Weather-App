@@ -80,6 +80,7 @@ body {
     background: #2c2c2c; /* Consistent with info container */
     display: flex;
     flex-direction: column;
+    margin-left: 20px;
     padding: 20px;
 }
 
@@ -90,18 +91,24 @@ body {
 
 ul {
     list-style: none;
-    padding: 0;
+    
 }
 
 .individual-forecast {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
+
 }
 
 .individual-forecast p {
-    margin: 0;
+    font-size: 1em;
+    
+}
+
+/* add relative height to the image */
+.individual-forecast img {
+    height: 1em;
 }
 
 
