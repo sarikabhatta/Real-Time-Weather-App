@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", (event) => {
-  const form = document.getElementsByClassName("class-form")[0];
-  const input = document.getElementsByClassName("class-input")[0];
+  const form = document.getElementsByClassName("form-class")[0];
+  const input = document.getElementsByClassName("input-class")[0];
 
   if (form && input) {
     let isSubmitting = false;
