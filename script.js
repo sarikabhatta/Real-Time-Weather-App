@@ -20,6 +20,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
       }
     });
   } else {
-    console.error("Form or input element not found");
+    console.error("Input or form not found");
   }
 });
