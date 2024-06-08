@@ -28,7 +28,7 @@
 //   }
 // });
 
-const input = document.querySelector(".input-class");
+const formInput = document.querySelector(".input-class");
 
 // define an event handler function
 function handleInput() {
@@ -40,4 +40,4 @@ function handleInput() {
 }
 
 // register event listener to the event source ie, html element here
-input.addEventListener("keydown", handleInput);
+formInput.addEventListener("keydown", handleInput);
