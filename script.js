@@ -28,16 +28,31 @@
 //   }
 // });
 
+const API_KEY = "ec9a6b06eb6b6160e6eb69255a9a1dcd";
+
 const formInput = document.querySelector(".input-class");
 
 // define an event handler function
-function handleInput() {
-  if (event.key === "Enter") {
-    // prevent default behavior of enter key ie, prevent default form submission
-    event.preventDefault();
-    console.log(input.value);
-  }
+function handleInput(event) {
+  // prevent default behavior of enter key ie, prevent default form submission
+  event.preventDefault();
+
+  const cityName = formInput.value;
+  const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${API_KEY}&units=metric`;
+
+  fetch(WEATHER_API_URL)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch(() => {
+      alert("An error occurred");
+    });
 }
 
 // register event listener to the event source ie, html element here
-formInput.addEventListener("keydown", handleInput);
+formInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    handleInput(event);
+  }
+});
