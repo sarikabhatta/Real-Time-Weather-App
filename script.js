@@ -46,7 +46,7 @@ function handleInput(event) {
       console.log(data);
     })
     .catch(() => {
-      alert("An error occurred");
+      alert("An error occurred while fetching data.");
     });
 }
 
