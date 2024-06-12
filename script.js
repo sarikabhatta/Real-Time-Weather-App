@@ -43,7 +43,15 @@ function handleInput(event) {
   fetch(WEATHER_API_URL)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
+      const uniqueForecastDays = [];
+      const fiveDaysForecast = data.list.filter((forecast) => {
+        const forecastDate = new Date(forecast.dt_txt).getDate();
+
+        if (!uniqueForecastDays.includes(forecastDate)) {
+          return uniqueForecastDays.push(forecastDate);
+        }
+      });
+      console.log(fiveDaysForecast);
     })
     .catch(() => {
       alert("An error occurred while fetching data from the api.");
