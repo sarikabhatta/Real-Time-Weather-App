@@ -45,7 +45,8 @@ function handleInput(event) {
     .then((data) => {
       const uniqueForecastDays = [];
       const fiveDaysForecast = data.list.filter((forecast) => {
-        const forecastDate = new Date(forecast.dt_txt).getDate();
+        // access dt_txt property of forecast object, here forecast object is the parsed json
+        const forecastDate = new Date(forecast.dt_txt).getDate(); //forecastDate = 12
 
         if (!uniqueForecastDays.includes(forecastDate)) {
           return uniqueForecastDays.push(forecastDate);
@@ -54,7 +55,7 @@ function handleInput(event) {
       console.log(fiveDaysForecast);
     })
     .catch(() => {
-      alert("An error occurred while fetching data from the api.");
+      alert("An error occurred while trying to fetch data from api");
     });
 }
 
