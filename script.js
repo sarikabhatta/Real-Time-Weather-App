@@ -41,7 +41,7 @@ function handleInput(event) {
   const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${API_KEY}&units=metric`;
 
   fetch(WEATHER_API_URL)
-    .then((res) => res.json())
+    .then((response) => response.json())
     .then((data) => {
       const uniqueForecastDays = [];
       const fiveDaysForecast = data.list.filter((forecast) => {
@@ -52,6 +52,7 @@ function handleInput(event) {
           return uniqueForecastDays.push(forecastDate);
         }
       });
+
       console.log(fiveDaysForecast);
     })
     .catch(() => {
