@@ -44,12 +44,18 @@ function handleInput(event) {
     .then((response) => response.json())
     .then((data) => {
       const uniqueForecastDays = [];
+      // fiveDaysForecast is an array returned by the filter() method
       const fiveDaysForecast = data.list.filter((forecast) => {
         // access dt_txt property of forecast object, here forecast object is the parsed json
+
         const forecastDate = new Date(forecast.dt_txt).getDate(); //forecastDate = 12
 
+        // this if is always executed for every argument in the callback
         if (!uniqueForecastDays.includes(forecastDate)) {
+          // NOTE: number is a truthy value
           return uniqueForecastDays.push(forecastDate);
+        } else {
+          return false;
         }
       });
 
