@@ -31,6 +31,31 @@
 const API_KEY = "ec9a6b06eb6b6160e6eb69255a9a1dcd";
 
 const formInput = document.querySelector(".input-class");
+const individualForecast = document.querySelector(".ul-class");
+
+const temperatureContainer = document.querySelector(".temperature-container");
+
+const createIndividualForecast = (element) => {
+  return ` <li class="individual-forecast">
+            <p>${element.dt_txt.split(" ")[0]} </p> 
+            <img
+              src="https://openweathermap.org/img/wn/${
+                element.weather[0].icon
+              }@2x.png"
+              alt="weather icon img"
+            />
+            <p>${element.main.temp.toFixed(2)}°C</p>
+          </li>
+  `;
+};
+
+const fillTemperatureContainer = () => {
+  return ` <h1>${formInput.value}</h1>
+            <p>Chance of rain: 0%</p>
+            <h1>26 degrees</h1>
+
+  `;
+};
 
 // define an event handler function
 function handleInput(event) {
@@ -38,6 +63,7 @@ function handleInput(event) {
   event.preventDefault();
 
   const cityName = formInput.value;
+
   const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${API_KEY}&units=metric`;
 
   fetch(WEATHER_API_URL)
@@ -59,7 +85,33 @@ function handleInput(event) {
         }
       });
 
+      individualForecast.innerHTML = ""; // setting innerHTML to empty of the parent element ie ul will remove all its child element
+
+      fiveDaysForecast.forEach((element) => {
+        individualForecast.insertAdjacentHTML(
+          "beforeend",
+          createIndividualForecast(element)
+        );
+      });
+
+      // for temperature container
+      const todayDate = data.list.filter((obj) => {
+        const date = new Date().getDate();
+
+        if (date == new Date(obj.dt_txt).getDate()) {
+          return true;
+        }
+      });
+
       console.log(fiveDaysForecast);
+      console.log("Hi", todayDate);
+
+      // todayDate.forEach((element) => {
+      //   temperatureContainer.insertAdjacentHTML(
+      //     "beforeend",
+      //     fillTemperatureContainer(element)
+      //   );
+      // });
     })
     .catch(() => {
       alert("An error occurred while trying to fetch data from api");

@@ -51,14 +51,10 @@ body {
     margin: 5px 0;
 }
 
-.image-container {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-}
+
 
 .image-container img {
-    width: 80px; /* Adjust size based on actual image size */
+    width: 100%; /* Adjust size based on actual image size */
 }
 
 .info-container {
@@ -89,8 +85,10 @@ body {
     margin-bottom: 18px;
 }
 
-ul {
+.ul-class {
     list-style: none;
+    display: flex;
+    flex-direction: column;
     
 }
 
@@ -98,17 +96,11 @@ ul {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-}
-
-.individual-forecast p {
-    font-size: 1em;
+    width: 100%;
     
+    
+
 }
 
-/* add relative height to the image */
-.individual-forecast img {
-    height: 1em;
-}
 
 
