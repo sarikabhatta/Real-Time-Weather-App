@@ -85,7 +85,7 @@ function handleInput(event) {
         }
       });
 
-      individualForecast.innerHTML = ""; // setting innerHTML to empty of the parent element ie ul will remove all its child element
+      individualForecast.innerHTML = " "; // setting innerHTML to empty of the parent element ie ul will remove all its child element
 
       fiveDaysForecast.forEach((element) => {
         individualForecast.insertAdjacentHTML(
