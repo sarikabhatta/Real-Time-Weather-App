@@ -34,6 +34,7 @@ const formInput = document.querySelector(".input-class");
 const individualForecast = document.querySelector(".ul-class");
 
 const temperatureContainer = document.querySelector(".temperature-container");
+const mainImageContainer = document.querySelector(".main-image-container");
 
 const createIndividualForecast = (element) => {
   return ` <li class="individual-forecast">
@@ -49,12 +50,21 @@ const createIndividualForecast = (element) => {
   `;
 };
 
-const fillTemperatureContainer = () => {
-  return ` <h1>${formInput.value}</h1>
-            <p>Chance of rain: 0%</p>
-            <h1>26 degrees</h1>
+const fillTemperatureContainer = (city, chanceOfRain, currentTemperature) => {
+  return ` <h1>${city}</h1>
+            <p>Chance of Rain: ${chanceOfRain}</p>
+            <h1>${currentTemperature}°C</h1>
 
   `;
+};
+
+const fillMainImageContainer = (mainImage, weatherDescription) => {
+  return `<img
+  src="https://openweathermap.org/img/wn/${mainImage}@2x.png"
+  alt="weather icon img"
+/>
+<p>${weatherDescription}</p>
+`;
 };
 
 // define an event handler function
@@ -69,49 +79,13 @@ function handleInput(event) {
   fetch(WEATHER_API_URL)
     .then((response) => response.json())
     .then((data) => {
-      const uniqueForecastDays = [];
-      // fiveDaysForecast is an array returned by the filter() method
-      const fiveDaysForecast = data.list.filter((forecast) => {
-        // access dt_txt property of forecast object, here forecast object is the parsed json
+      // parsed json is kept in newElement so we can use it to other part of code too? ... check here about variable scope
+      newElement = data;
 
-        const forecastDate = new Date(forecast.dt_txt).getDate(); //forecastDate = 12
-
-        // this if is always executed for every argument in the callback
-        if (!uniqueForecastDays.includes(forecastDate)) {
-          // NOTE: number is a truthy value
-          return uniqueForecastDays.push(forecastDate);
-        } else {
-          return false;
-        }
-      });
-
-      individualForecast.innerHTML = " "; // setting innerHTML to empty of the parent element ie ul will remove all its child element
-
-      fiveDaysForecast.forEach((element) => {
-        individualForecast.insertAdjacentHTML(
-          "beforeend",
-          createIndividualForecast(element)
-        );
-      });
-
-      // for temperature container
-      const todayDate = data.list.filter((obj) => {
-        const date = new Date().getDate();
-
-        if (date == new Date(obj.dt_txt).getDate()) {
-          return true;
-        }
-      });
-
-      console.log(fiveDaysForecast);
-      console.log("Hi", todayDate);
-
-      // todayDate.forEach((element) => {
-      //   temperatureContainer.insertAdjacentHTML(
-      //     "beforeend",
-      //     fillTemperatureContainer(element)
-      //   );
-      // });
+      console.log(newElement);
+      addDetailsInRHS();
+      addDetailsInTemperatureContainer();
+      addDetailsInMainImage();
     })
     .catch(() => {
       alert("An error occurred while trying to fetch data from api");
@@ -124,3 +98,58 @@ formInput.addEventListener("keydown", (event) => {
     handleInput(event);
   }
 });
+
+function addDetailsInTemperatureContainer() {
+  const chanceOfRain = newElement.list[0].pop * 100 + "%";
+  const city = newElement.city.name;
+  const currentTemperature = newElement.list[0].main.temp;
+
+  // add html element to temperatureContainer div-- here html is return value of the function
+  temperatureContainer.innerHTML = fillTemperatureContainer(
+    city,
+    chanceOfRain,
+    currentTemperature
+  );
+}
+
+// function addDetailsInMainImage() {
+//   const mainImage = newElement.list[0].weather[0].icon;
+//   const weatherDescription =
+//     newElement.list[0].weather[0].description.split(" ");
+//   // .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+//   // .join(" ");
+
+//   console.log(weatherDescription);
+
+//   // mainImageContainer.innerHTML = fillMainImageContainer(
+//   //   mainImage,
+//   //   weatherDescription
+//   // );
+// }
+
+function addDetailsInRHS() {
+  const uniqueForecastDays = [];
+  // fiveDaysForecast is an array returned by the filter() method
+  const fiveDaysForecast = newElement.list.filter((forecast) => {
+    // access dt_txt property of forecast object, here forecast object is the parsed json
+
+    const forecastDate = new Date(forecast.dt_txt).getDate(); //forecastDate = 12
+
+    // this if is always executed for every argument in the callback
+    if (!uniqueForecastDays.includes(forecastDate)) {
+      // NOTE: number is a truthy value
+      return uniqueForecastDays.push(forecastDate);
+    } else {
+      return false;
+    }
+  });
+  individualForecast.innerHTML = " "; // setting innerHTML to empty of the parent element ie ul will remove all its child element
+
+  // add html element
+  fiveDaysForecast.forEach((element) => {
+    individualForecast.insertAdjacentHTML(
+      "beforeend",
+      createIndividualForecast(element)
+    );
+  });
+}

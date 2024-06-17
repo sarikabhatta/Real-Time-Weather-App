@@ -51,10 +51,10 @@ body {
     margin: 5px 0;
 }
 
+.main-image-container {
+    margin-left: 30px;
+    height: 1em;
 
-
-.image-container img {
-    width: 100%; /* Adjust size based on actual image size */
 }
 
 .info-container {
