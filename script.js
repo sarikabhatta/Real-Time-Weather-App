@@ -112,20 +112,20 @@ function addDetailsInTemperatureContainer() {
   );
 }
 
-// function addDetailsInMainImage() {
-//   const mainImage = newElement.list[0].weather[0].icon;
-//   const weatherDescription =
-//     newElement.list[0].weather[0].description.split(" ");
-//   // .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-//   // .join(" ");
+function addDetailsInMainImage() {
+  const mainImage = newElement.list[0].weather[0].icon;
+  const weatherDescription = newElement.list[0].weather[0].description
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 
-//   console.log(weatherDescription);
+  console.log(weatherDescription);
 
-//   // mainImageContainer.innerHTML = fillMainImageContainer(
-//   //   mainImage,
-//   //   weatherDescription
-//   // );
-// }
+  mainImageContainer.innerHTML = fillMainImageContainer(
+    mainImage,
+    weatherDescription
+  );
+}
 
 function addDetailsInRHS() {
   const uniqueForecastDays = [];
