@@ -17,8 +17,8 @@ body {
 
 .main-container {
     display: flex;
-    width: 90%;
-    max-width: 1000px;
+    width: 80%;
+    height: 90vh;
     background: #333; /* Matching dark shade */
     border-radius: 16px;
     overflow: hidden;
@@ -27,7 +27,7 @@ body {
 /* Left side container */
 .lfh-container {
     flex-grow: 1;
-    padding: 20px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;

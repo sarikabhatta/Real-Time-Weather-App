@@ -36,6 +36,8 @@ const individualForecast = document.querySelector(".ul-class");
 const temperatureContainer = document.querySelector(".temperature-container");
 const mainImageContainer = document.querySelector(".main-image-container");
 
+const infoContainer = document.querySelector(".info-container");
+
 const createIndividualForecast = (element) => {
   return ` <li class="individual-forecast">
             <p>${element.dt_txt.split(" ")[0]} </p> 
@@ -50,6 +52,7 @@ const createIndividualForecast = (element) => {
   `;
 };
 
+// return html
 const fillTemperatureContainer = (city, chanceOfRain, currentTemperature) => {
   return ` <h1>${city}</h1>
             <p>Chance of Rain: ${chanceOfRain}</p>
@@ -58,6 +61,7 @@ const fillTemperatureContainer = (city, chanceOfRain, currentTemperature) => {
   `;
 };
 
+// return html
 const fillMainImageContainer = (mainImage, weatherDescription) => {
   return `<img
   src="https://openweathermap.org/img/wn/${mainImage}@2x.png"
@@ -65,6 +69,11 @@ const fillMainImageContainer = (mainImage, weatherDescription) => {
 />
 <p>${weatherDescription}</p>
 `;
+};
+
+const fillInfoContainer = (humidityLevel, windSpeed) => {
+  return `<p>Humidity: ${humidityLevel}%</p>
+          <p>Wind: ${windSpeed}M/S</p>`;
 };
 
 // define an event handler function
@@ -86,6 +95,7 @@ function handleInput(event) {
       addDetailsInRHS();
       addDetailsInTemperatureContainer();
       addDetailsInMainImage();
+      addDetailsToInfoContainer();
     })
     .catch(() => {
       alert("An error occurred while trying to fetch data from api");
@@ -152,4 +162,11 @@ function addDetailsInRHS() {
       createIndividualForecast(element)
     );
   });
+}
+
+function addDetailsToInfoContainer() {
+  const humidityLevel = newElement.list[0].main.humidity;
+  const windSpeed = newElement.list[0].wind.speed;
+
+  infoContainer.innerHTML = fillInfoContainer(humidityLevel, windSpeed);
 }
